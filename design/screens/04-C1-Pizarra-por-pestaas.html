@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<title>C1 — Pizarra por pestañas · Inicio</title>
+<script src="e615c16c-5bd8-4e50-824b-91decbfeaffd"></script>
+</head>
+<body>
+<x-dc>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #FAFAF8; color: #0F0F0F; font-family: 'Archivo', 'Helvetica Neue', sans-serif; padding: 56px 20px 0; display: flex; flex-direction: column; gap: 18px">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 3px solid #0F0F0F">
+    <div style="font-size: 26px; font-weight: 900; font-stretch: 62%; text-transform: uppercase">Trazo</div>
+    <div style="display: flex; gap: 8px">
+      <button aria-label="Buscar alumno" style="width: 44px; height: 44px; border: 2px solid #0F0F0F; background: transparent; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#0F0F0F" stroke-width="2.2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></button>
+      <button aria-label="Nuevo" style="width: 44px; height: 44px; border: none; background: #0F0F0F; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FAFAF8" stroke-width="2.4"><path d="M12 5v14M5 12h14"></path></svg></button>
+    </div>
+  </header>
+
+  <section style="display: flex; align-items: flex-end; gap: 14px">
+    <div style="font-size: 132px; line-height: 0.76; font-weight: 900; font-stretch: 62%; color: #C2410C">3</div>
+    <div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 2px">
+      <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #3D3D3D">Mar 6 oct</div>
+      <div style="font-size: 30px; line-height: 0.95; font-weight: 800; font-stretch: 75%; text-transform: uppercase">para revisar hoy</div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 8px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">
+      <span>Entrenos semana</span><span style="font-size: 18px; font-stretch: 75%; font-weight: 800">31<span style="color: #6B6B6B">/38</span></span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(38, minmax(0, 1fr)); gap: 2px; height: 14px">
+      <sc-for list="{{ week }}" as="w" hint-placeholder-count="38"><div style="background: {{ w.bg }}"></div></sc-for>
+    </div>
+  </section>
+
+  <div role="tablist" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid #0F0F0F">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+      <button role="tab" aria-selected="{{ t.on }}" sc-camel-on-click="{{ t.pick }}" style="height: 52px; background: transparent; border: none; border-bottom: 5px solid {{ t.line }}; font-family: inherit; text-align: left; padding: 0 0 4px; display: flex; flex-direction: column; justify-content: flex-end; gap: 0; color: #0F0F0F">
+        <span style="font-size: 22px; line-height: 1; font-weight: 800; font-stretch: 75%; color: {{ t.color }}">{{ t.count }}</span>
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em">{{ t.title }}</span>
+      </button>
+    </sc-for>
+  </div>
+
+  <section style="display: flex; flex-direction: column; margin-top: -18px">
+    <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+      <a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid #D9D9D4; text-decoration: none; color: #0F0F0F">
+        <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline">
+          <span style="font-size: 17px; font-weight: 700">{{ r.name }}</span>
+          <span style="font-size: 20px; font-weight: 800; font-stretch: 75%; color: {{ color }}">{{ r.metric }}</span>
+        </div>
+        <span style="font-size: 14px; color: #3D3D3D; line-height: 1.35">{{ r.text }}</span>
+      </a>
+    </sc-for>
+  </section>
+
+  <a href="#" style="position: absolute; left: 20px; right: 20px; bottom: 96px; height: 52px; background: #0F0F0F; color: #FAFAF8; text-decoration: none; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; box-sizing: border-box">
+    <span style="display: flex; flex-direction: column"><span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #BDBDB8">Próximo · 07:00</span><span style="font-size: 15px; font-weight: 700">Lucas F. — Tren inferior</span></span>
+    <span style="font-size: 20px">→</span>
+  </a>
+
+  <nav style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 8px 8px 24px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 2px solid #0F0F0F; background: #FAFAF8">
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #1636C2; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16"></rect><path d="M4 10h16"></path></svg>Hoy</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #0F0F0F; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.3-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><path d="M16 4.6a3.5 3.5 0 010 6.8M18 14.8c2 .7 3.2 2.5 3.6 5.2"></path></svg>Alumnos</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #0F0F0F; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>Rutinas</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #0F0F0F; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="15"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>Agenda</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #0F0F0F; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"></path></svg>Mensajes</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+renderVals() {
+const tab = (this.state && this.state.tab) || 0;
+const orange = '#C2410C', cobalt = '#1636C2', gray = '#5C5C5C';
+const data = [
+{ title: 'Revisar', count: '3', color: orange, rows: [
+{ name: 'Martín Ruiz', metric: '8 días', text: 'Sin registrar entrenamiento. Venía 4 por semana.' },
+{ name: 'Sofía Méndez', metric: '5 sem', text: 'Peso sin cambios con 92% de cumplimiento.' },
+{ name: 'Lucía Pereyra', metric: '4 → 2', text: 'Frecuencia en baja. Estrés alto en su check-in.' }
+] },
+{ title: 'Progresan', count: '14', color: cobalt, rows: [
+{ name: 'Lucas Ferreyra', metric: '+12%', text: 'Sentadilla 100 → 112 kg. Récord el jueves.' },
+{ name: 'Valentina Ríos', metric: '+8%', text: 'Press banca: 3 semanas seguidas subiendo.' },
+{ name: 'Joaquín Díaz', metric: '+6%', text: 'Rehab rodilla: flexión completa sin dolor.' }
+] },
+{ title: 'Sin cambios', count: '4', color: gray, rows: [
+{ name: 'Tomás Acuña', metric: '3 sem', text: 'Peso muerto estable en 140 kg.' },
+{ name: 'Camila Torres', metric: '30 días', text: 'Sin mediciones. Evaluación hoy 08:30.' },
+{ name: 'Florencia Gil', metric: '2 sem', text: 'Cintura sin variación desde el control.' }
+] }
+];
+return {
+week: Array.from({ length: 38 }, (_, i) => ({ bg: i < 31 ? '#0F0F0F' : '#DADAD5' })),
+tabs: data.map((d, i) => ({ title: d.title, count: d.count, color: d.color, on: i === tab, line: i === tab ? d.color : 'transparent', pick: () => this.setState({ tab: i }) })),
+rows: data[tab].rows,
+color: data[tab].color
+};
+}
+}
+</script>
+
+
+</body></html>

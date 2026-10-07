@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<title>C3 — Uno por uno · Inicio</title>
+<script src="afb4a509-8f23-41bb-9fae-a786cc595ca7"></script>
+</head>
+<body>
+<x-dc>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #FAFAF8; color: #0F0F0F; font-family: 'Archivo', 'Helvetica Neue', sans-serif; padding: 56px 20px 0; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; height: 44px">
+    <div style="display: flex; align-items: baseline; gap: 10px">
+      <span style="font-size: 26px; font-weight: 900; font-stretch: 62%; text-transform: uppercase">Hoy</span>
+      <span style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #3D3D3D">Mar 6 oct</span>
+    </div>
+    <a href="#" style="height: 44px; display: flex; align-items: center; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #0F0F0F">Ver como lista</a>
+  </header>
+
+  <div style="display: flex; flex-direction: column; gap: 8px">
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; height: 6px">
+      <sc-for list="{{ segs }}" as="s" hint-placeholder-count="5"><div style="background: {{ s.bg }}"></div></sc-for>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em">
+      <span style="color: {{ cur.color }}">{{ cur.kind }}</span><span style="font-stretch: 75%">{{ pos }} / 5</span>
+    </div>
+  </div>
+
+  <section style="display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: 3px solid #0F0F0F">
+    <h1 style="margin: 0; font-size: 54px; line-height: 0.9; font-weight: 900; font-stretch: 62%; text-transform: uppercase; white-space: pre-line">{{ cur.name }}</h1>
+    <div style="font-size: 14px; color: #3D3D3D">{{ cur.who }}</div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 4px">
+    <div style="font-size: 112px; line-height: 0.82; font-weight: 900; font-stretch: 62%; color: {{ cur.color }}; letter-spacing: -0.01em">{{ cur.metric }}</div>
+    <div style="font-size: 20px; font-weight: 800; font-stretch: 75%; text-transform: uppercase">{{ cur.unit }}</div>
+    <div style="font-size: 15px; line-height: 1.4; color: #2A2A2A; padding-top: 4px">{{ cur.text }}</div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 6px">
+    <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #3D3D3D"><span>Últimos 28 días</span><span>hoy</span></div>
+    <div style="display: grid; grid-template-columns: repeat(28, minmax(0, 1fr)); gap: 2px; height: 16px">
+      <sc-for list="{{ cur.cells }}" as="c" hint-placeholder-count="28"><div style="background: {{ c.bg }}"></div></sc-for>
+    </div>
+  </section>
+
+  <!-- Acciones en zona del pulgar -->
+  <div style="position: absolute; left: 20px; right: 20px; bottom: 100px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <a href="#" style="height: 48px; border: 2px solid #0F0F0F; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #0F0F0F; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em">Ver ficha</a>
+      <button sc-camel-on-click="{{ next }}" style="height: 48px; border: 2px solid #0F0F0F; background: transparent; font-family: inherit; color: #0F0F0F; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em">Revisado →</button>
+    </div>
+    <button sc-camel-on-click="{{ next }}" style="height: 58px; border: none; background: #0F0F0F; color: #FAFAF8; font-family: inherit; font-size: 18px; font-weight: 800; font-stretch: 75%; text-transform: uppercase; letter-spacing: 0.03em">{{ cur.action }}</button>
+  </div>
+
+  <nav style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 8px 8px 24px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 2px solid #0F0F0F; background: #FAFAF8">
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #1636C2; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16"></rect><path d="M4 10h16"></path></svg>Hoy</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #0F0F0F; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.3-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><path d="M16 4.6a3.5 3.5 0 010 6.8M18 14.8c2 .7 3.2 2.5 3.6 5.2"></path></svg>Alumnos</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #0F0F0F; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>Rutinas</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #0F0F0F; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="15"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>Agenda</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #0F0F0F; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"></path></svg>Mensajes</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+renderVals() {
+const i = (this.state && this.state.i) || 0;
+const orange = '#C2410C', cobalt = '#1636C2';
+const cells = (s) => s.split('').map((ch) => ({ bg: ch === '1' ? '#0F0F0F' : (ch === 'r' ? cobalt : '#DADAD5') }));
+const items = [
+{ kind: 'Revisar', color: orange, name: 'Martín\nRuiz', who: 'Recomposición · Intermedio', metric: '8', unit: 'días sin entrenar', text: 'Venía con 4 sesiones por semana. Último registro: lunes 28/09.', action: 'Escribirle', cells: cells('1101101101101101101100000000') },
+{ kind: 'Revisar', color: orange, name: 'Sofía\nMéndez', who: 'Bajar grasa · Intermedio', metric: '5', unit: 'semanas sin cambio de peso', text: 'Cumplimiento 92%. La constancia no es el problema: conviene revisar el plan.', action: 'Revisar plan', cells: cells('1101101101101101101101101101') },
+{ kind: 'Revisar', color: orange, name: 'Lucía\nPereyra', who: 'Salud general · Principiante', metric: '4→2', unit: 'entrenos por semana', text: 'Baja sostenida hace 3 semanas. Último check-in: estrés 4/5, sueño 2/5.', action: 'Pedir check-in', cells: cells('1101101101011010001001000100') },
+{ kind: 'Buena noticia', color: cobalt, name: 'Lucas\nFerreyra', who: 'Fuerza · Avanzado', metric: '+12%', unit: 'en sentadilla', text: '100 → 112 kg en 6 semanas. Nuevo récord personal el jueves.', action: 'Felicitarlo', cells: cells('1011010110101r01011010110r01') },
+{ kind: 'Buena noticia', color: cobalt, name: 'Pedro\nAlonso', who: 'Hipertrofia · Intermedio', metric: '16/16', unit: 'sesiones del mes', text: 'Su primer mes completo sin faltar.', action: 'Felicitarlo', cells: cells('1010101101010110101011010101') }
+];
+return {
+cur: items[i],
+pos: String(i + 1),
+segs: items.map((it, k) => ({ bg: k < i ? '#0F0F0F' : (k === i ? it.color : '#DADAD5') })),
+next: () => this.setState({ i: (i + 1) % items.length })
+};
+}
+}
+</script>
+
+
+</body></html>

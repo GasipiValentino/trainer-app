@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/*
+ * Cualquier variante sale de estos valores.
+ */
+@theme {
+  --color-bg: #111214;          /* fondo de pantalla */
+  --color-surface: #1c1d21;     /* cards, nav, inputs */
+  --color-raised: #26282d;      /* filas dentro de cards, chips neutros */
+  --color-track: #2e3036;       /* barras vacías, separadores */
+  --color-line: #3a3c42;        /* bordes de chips, avatares */
+  --color-line-soft: #4a4d54;   /* bordes punteados, anillo inactivo */
+  --color-avatar-2: #5a5d64;
+  --color-ink: #f2f2ee;         /* texto principal */
+  --color-mute: #9a9da5;        /* texto secundario */
+  --color-lime: #d4f64a;        /* acento */
+  --color-lime-hover: #e6ff85;
+  --color-coral: #ff8f6b;       /* atención */
+  --color-sky: #8ec5ff;         /* evaluación */
+  --color-task: #6a6d74;        /* tarea */
+
+  --font-sans: var(--font-geist), "Helvetica Neue", sans-serif;
+
+  --radius-card: 24px;
+  --radius-hero: 28px;
+}
+
+/* Estilos base dentro de la capa "base": las utilidades de Tailwind los pisan. */
+@layer base {
+  :root {
+    color-scheme: dark;
+    --lime-soft: rgba(212, 246, 74, 0.14);
+    --coral-soft: rgba(255, 143, 107, 0.16);
+  }
+
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fondo rayado de los placeholders de video/foto del diseño (D8, E2). */
+.stripes {
+  background: repeating-linear-gradient(135deg, #26282d 0 10px, #222429 10px 20px);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+.skeleton {
+  background: var(--color-surface);
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+/*
+ * Reporte → PDF (imprimir / guardar como PDF). En papel se invierte a fondo
+ * blanco para ahorrar tinta y mejorar la lectura; se oculta la navegación.
+ */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  :root {
+    color-scheme: light;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #111214 !important;
+  }
+  /* Lima sobre blanco no se lee: líneas y textos lima pasan a tonos oscuros. */
+  .report polyline {
+    stroke: #111214 !important;
+  }
+  .report .text-lime {
+    color: #4d6300 !important;
+  }
+  .report .bg-line {
+    background: #e6e7e2 !important;
+  }
+  .app-chrome,
+  .no-print,
+  nextjs-portal {
+    display: none !important;
+  }
+  .report {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .report .report-card {
+    background: #fff !important;
+    border: 1px solid #d9dad6;
+  }
+  .report .bg-raised,
+  .report .report-row {
+    background: #f2f2ee !important;
+  }
+  .report .text-mute {
+    color: #5a5d64 !important;
+  }
+  .report .text-ink {
+    color: #111214 !important;
+  }
+  .report .break-inside-avoid {
+    break-inside: avoid;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

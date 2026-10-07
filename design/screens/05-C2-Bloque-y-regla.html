@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<title>C2 — Bloque y regla · Inicio</title>
+<script src="89ea080e-849b-47be-96e8-0f083af44b45"></script>
+</head>
+<body>
+<x-dc>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FAFAF8; color: #0F0F0F; font-family: 'Archivo', 'Helvetica Neue', sans-serif; display: flex; flex-direction: column">
+
+  <!-- Bloque -->
+  <section style="background: {{ block }}; color: #FFFFFF; padding: 56px 20px 0; display: flex; flex-direction: column; gap: 18px">
+    <header style="display: flex; align-items: center; justify-content: space-between">
+      <div style="font-size: 26px; font-weight: 900; font-stretch: 62%; text-transform: uppercase">Trazo</div>
+      <button aria-label="Buscar alumno" style="width: 44px; height: 44px; border: 2px solid #FFFFFF; background: transparent; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></button>
+    </header>
+
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+      <div style="display: flex; align-items: flex-end; gap: 12px">
+        <div style="font-size: 150px; line-height: 0.76; font-weight: 900; font-stretch: 62%">3</div>
+        <div style="font-size: 28px; line-height: 0.95; font-weight: 800; font-stretch: 75%; text-transform: uppercase; padding-bottom: 2px">alumnos<br>para<br>revisar</div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px; padding-bottom: 2px">
+        <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em">Mar 6 oct</span>
+        <span style="font-size: 13px">24 activos</span>
+      </div>
+    </div>
+
+    <!-- Regla semanal -->
+    <div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 14px">
+      <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em">
+        <span>Entrenos por día</span><span>31 / 38 semana</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); height: 64px; border-bottom: 2px solid #FFFFFF; align-items: end">
+        <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+          <div style="height: 100%; display: flex; align-items: flex-end; justify-content: center; border-left: 1px solid rgba(255,255,255,0.35); position: relative">
+            <div style="width: 22px; height: {{ d.h }}; background: {{ d.bg }}; border: {{ d.border }}; box-sizing: border-box"></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 11px; font-weight: 700; text-align: center">
+        <sc-for list="{{ days }}" as="d" hint-placeholder-count="7"><span style="text-decoration: {{ d.ul }}; text-underline-offset: 3px">{{ d.label }} {{ d.n }}</span></sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cola -->
+  <section style="padding: 6px 20px 0; display: flex; flex-direction: column">
+    <sc-for list="{{ queue }}" as="q" hint-placeholder-count="3">
+      <a href="#" style="display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 14px 0; border-bottom: 1px solid #D9D9D4; text-decoration: none; color: #0F0F0F">
+        <span style="font-size: 24px; line-height: 1; font-weight: 900; font-stretch: 62%; color: #C2410C">{{ q.n }}</span>
+        <span style="display: flex; flex-direction: column; gap: 3px">
+          <span style="font-size: 17px; font-weight: 700">{{ q.name }}</span>
+          <span style="font-size: 14px; color: #3D3D3D; line-height: 1.35">{{ q.text }}</span>
+        </span>
+        <span style="font-size: 20px; font-weight: 800; font-stretch: 75%; color: #C2410C; white-space: nowrap">{{ q.metric }}</span>
+      </a>
+    </sc-for>
+    <a href="#" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; text-decoration: none; color: #0F0F0F">
+      <span style="display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #1636C2">Buenas noticias · 2</span>
+        <span style="font-size: 15px">Lucas +12% en sentadilla · Pedro 1 mes sin faltar</span>
+      </span>
+      <span style="font-size: 18px">→</span>
+    </a>
+  </section>
+
+  <nav style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; box-sizing: border-box; padding: 8px 8px 24px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #0F0F0F">
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #FFFFFF; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16"></rect></svg>Hoy</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #B8B8B3; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.3-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><path d="M16 4.6a3.5 3.5 0 010 6.8M18 14.8c2 .7 3.2 2.5 3.6 5.2"></path></svg>Alumnos</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #B8B8B3; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>Rutinas</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #B8B8B3; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="5" width="17" height="15"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>Agenda</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #B8B8B3; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"></path></svg>Mensajes</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;block&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#1636C2&quot;,&quot;options&quot;:[&quot;#1636C2&quot;,&quot;#0F0F0F&quot;,&quot;#C2410C&quot;]},&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+renderVals() {
+const counts = [6, 5, 7, 6, 4, 3, 0];
+const labels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+const today = 1;
+return {
+block: this.props.block ?? '#1636C2',
+days: counts.map((n, i) => ({
+label: labels[i],
+n: i <= today ? String(n) : '',
+h: i <= today ? Math.round(n / 8 * 100) + '%' : Math.round(n / 8 * 100) + '%',
+bg: i < today ? '#FFFFFF' : (i === today ? '#FFFFFF' : 'transparent'),
+border: i > today ? '1.5px dashed rgba(255,255,255,0.7)' : 'none',
+ul: i === today ? 'underline' : 'none'
+})),
+queue: [
+{ n: '01', name: 'Martín Ruiz', text: 'Sin registrar entrenamiento. Venía 4 por semana.', metric: '8 días' },
+{ n: '02', name: 'Sofía Méndez', text: 'Peso sin cambios con 92% de cumplimiento.', metric: '5 sem' },
+{ n: '03', name: 'Lucía Pereyra', text: 'Frecuencia en baja. Estrés alto en su check-in.', metric: '4 → 2' }
+]
+};
+}
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<title>D8 — Biblioteca de ejercicios</title>
+<script src="03c48f94-c149-4100-af3c-f52bcdb73404"></script>
+</head>
+<body>
+<x-dc>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #111214; color: #F2F2EE; font-family: 'Geist', 'Helvetica Neue', sans-serif; padding: 58px 16px 0; display: flex; flex-direction: column; gap: 12px">
+
+  <header style="display: flex; align-items: center; gap: 12px">
+    <a href="D5_Rutina.dc.html" aria-label="Volver a la rutina" style="width: 44px; height: 44px; border-radius: 50%; background: #1C1D21; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="2.2"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    <div style="display: flex; flex-direction: column">
+      <span style="font-size: 13px; color: #9A9DA5">Agregando a Día 1 · Superior</span>
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em">Ejercicios <span style="font-size: 15px; color: #9A9DA5; font-weight: 500">214</span></span>
+    </div>
+  </header>
+
+  <label style="height: 48px; border-radius: 24px; background: #1C1D21; display: flex; align-items: center; gap: 10px; padding: 0 16px">
+    <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#9A9DA5" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+    <input placeholder="Buscar ejercicio, músculo o equipo" aria-label="Buscar ejercicio" style="flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: #F2F2EE; font-family: inherit; font-size: 15px">
+  </label>
+
+  <div style="display: flex; gap: 6px; overflow: hidden; margin-right: -16px">
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="6">
+      <button sc-camel-on-click="{{ g.pick }}" style="height: 36px; padding: 0 14px; border-radius: 18px; border: {{ g.border }}; background: {{ g.bg }}; color: {{ g.fg }}; font-family: inherit; font-size: 14px; font-weight: 600; flex-shrink: 0">{{ g.label }}</button>
+    </sc-for>
+  </div>
+
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <sc-for list="{{ items }}" as="e" hint-placeholder-count="6">
+      <button sc-camel-on-click="{{ e.toggle }}" style="text-align: left; border: {{ e.border }}; border-radius: 22px; background: #1C1D21; padding: 8px; font-family: inherit; color: #F2F2EE; display: flex; flex-direction: column; gap: 8px">
+        <div style="height: 104px; border-radius: 16px; background: repeating-linear-gradient(135deg, #26282D 0 10px, #222429 10px 20px); position: relative; display: flex; align-items: center; justify-content: center">
+          <span style="width: 34px; height: 34px; border-radius: 50%; background: rgba(17,18,20,0.75); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="#F2F2EE"><path d="M7 4l13 8-13 8z"></path></svg></span>
+          <span style="position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; border-radius: 50%; background: {{ e.checkBg }}; border: {{ e.checkBorder }}; box-sizing: border-box; display: flex; align-items: center; justify-content: center; color: #111214; font-size: 14px; font-weight: 800">{{ e.mark }}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 0 4px 4px">
+          <span style="font-size: 14px; font-weight: 650; line-height: 1.25">{{ e.name }}</span>
+          <span style="font-size: 12px; color: #9A9DA5">{{ e.meta }}</span>
+        </div>
+      </button>
+    </sc-for>
+  </section>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 28px; box-shadow: 0 -24px 40px rgba(17,18,20,0.95)">
+    <a href="D5_Rutina.dc.html" style="height: 56px; border-radius: 28px; background: #D4F64A; color: #111214; text-decoration: none; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{ cta }}</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const g = st.g || 'Todos';
+const sel = st.sel || { 'Face pull': true };
+const all = [
+{ name: 'Press inclinado con mancuernas', group: 'Pecho', eq: 'Mancuernas' },
+{ name: 'Face pull', group: 'Hombros', eq: 'Polea' },
+{ name: 'Remo invertido', group: 'Espalda', eq: 'Peso corporal' },
+{ name: 'Fondos en paralelas', group: 'Pecho', eq: 'Peso corporal' },
+{ name: 'Vuelos laterales', group: 'Hombros', eq: 'Mancuernas' },
+{ name: 'Jalón al pecho', group: 'Espalda', eq: 'Polea' },
+{ name: 'Sentadilla búlgara', group: 'Piernas', eq: 'Mancuernas' },
+{ name: 'Plancha con toque', group: 'Core', eq: 'Peso corporal' }
+];
+const list = (g === 'Todos' ? all : all.filter((e) => e.group === g)).slice(0, 6);
+const count = Object.keys(sel).filter((k) => sel[k]).length;
+return {
+groups: ['Todos', 'Pecho', 'Espalda', 'Hombros', 'Piernas', 'Core'].map((x) => ({ label: x, bg: x === g ? '#F2F2EE' : 'transparent', fg: x === g ? '#111214' : '#F2F2EE', border: x === g ? 'none' : '1px solid #3A3C42', pick: () => this.setState({ g: x }) })),
+items: list.map((e) => {
+const on = !!sel[e.name];
+return { name: e.name, meta: e.group + ' · ' + e.eq, border: on ? '2px solid #D4F64A' : '2px solid transparent', checkBg: on ? '#D4F64A' : 'rgba(17,18,20,0.6)', checkBorder: on ? 'none' : '1.5px solid #F2F2EE', mark: on ? '✓' : '', toggle: () => this.setState({ sel: Object.assign({}, sel, { [e.name]: !on }) }) };
+}),
+cta: count ? 'Agregar ' + count + (count === 1 ? ' ejercicio' : ' ejercicios') : 'Elegí ejercicios'
+};
+}
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<title>E4 — Alumno · Check-in semanal</title>
+<script src="3799c07e-ddbf-4957-8b98-a91754227281"></script>
+</head>
+<body>
+<x-dc>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #111214; color: #F2F2EE; font-family: 'Geist', 'Helvetica Neue', sans-serif; padding: 58px 16px 0; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; align-items: center; justify-content: space-between">
+    <a href="E1_Hoy.dc.html" aria-label="Cerrar" style="width: 44px; height: 44px; border-radius: 50%; background: #1C1D21; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#F2F2EE" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+    <div style="height: 36px; padding: 0 12px 0 4px; border-radius: 18px; background: #1C1D21; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600"><span style="width: 28px; height: 28px; border-radius: 50%; background: #D4F64A; color: #111214; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700">VG</span>Pedido por Valen</div>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 4px; padding: 0 4px">
+    <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.03em">¿Cómo fue tu semana?</h1>
+    <span style="font-size: 14px; color: #9A9DA5">1 minuto · 1 es muy bajo, 5 es muy alto</span>
+  </section>
+
+  <section style="background: #1C1D21; border-radius: 24px; padding: 8px 14px; display: flex; flex-direction: column">
+    <sc-for list="{{ qs }}" as="q" hint-placeholder-count="5">
+      <div role="group" aria-label="{{ q.label }}" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 0; border-bottom: {{ q.sep }}">
+        <span style="font-size: 15px; font-weight: 600">{{ q.label }}</span>
+        <div style="display: flex; gap: 4px">
+          <sc-for list="{{ q.opts }}" as="o" hint-placeholder-count="5">
+            <button sc-camel-on-click="{{ o.pick }}" aria-pressed="{{ o.on }}" style="width: 40px; height: 44px; border-radius: 14px; border: none; background: {{ o.bg }}; color: {{ o.fg }}; font-family: inherit; font-size: 15px; font-weight: 650">{{ o.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="background: #1C1D21; border-radius: 24px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between">
+    <div style="display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 600">Entrenamientos</span><span style="font-size: 12px; color: #9A9DA5">Tenías 4 planificados</span></div>
+    <div style="display: flex; align-items: center; gap: 14px">
+      <button sc-camel-on-click="{{ dec }}" aria-label="Menos" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #3A3C42; background: transparent; color: #F2F2EE; font-size: 20px">−</button>
+      <span style="font-size: 24px; font-weight: 700; min-width: 20px; text-align: center">{{ trainings }}</span>
+      <button sc-camel-on-click="{{ inc }}" aria-label="Más" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: #D4F64A; color: #111214; font-size: 20px; font-weight: 700">+</button>
+    </div>
+  </section>
+
+  <label style="display: flex; flex-direction: column; gap: 6px">
+    <span style="font-size: 14px; color: #9A9DA5; padding: 0 4px">¿Algo que Valen deba saber? (opcional)</span>
+    <textarea placeholder="Molestias, cambios de horario, cómo te sentiste…" style="height: 72px; resize: none; border-radius: 20px; border: none; background: #1C1D21; padding: 14px; box-sizing: border-box; color: #F2F2EE; font-family: inherit; font-size: 15px; outline: none"></textarea>
+  </label>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 28px">
+    <button style="width: 100%; height: 56px; border-radius: 28px; border: none; background: {{ ctaBg }}; color: {{ ctaFg }}; font-family: inherit; font-size: 16px; font-weight: 700">{{ cta }}</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const ans = st.ans || { 'Energía': 4, 'Sueño': 3 };
+const t = st.t == null ? 3 : st.t;
+const labels = ['Energía', 'Sueño', 'Estrés', 'Dolor', 'Motivación'];
+const answered = labels.filter((l) => ans[l]).length;
+return {
+qs: labels.map((l, qi) => ({
+label: l,
+sep: qi < labels.length - 1 ? '1px solid #2E3036' : 'none',
+opts: [1, 2, 3, 4, 5].map((n) => ({
+n: String(n), on: ans[l] === n,
+bg: ans[l] === n ? '#D4F64A' : '#26282D',
+fg: ans[l] === n ? '#111214' : '#F2F2EE',
+pick: () => this.setState({ ans: Object.assign({}, ans, { [l]: n }) })
+}))
+})),
+trainings: String(t),
+dec: () => this.setState({ t: Math.max(0, t - 1) }),
+inc: () => this.setState({ t: Math.min(7, t + 1) }),
+cta: answered === labels.length ? 'Enviar a Valen' : 'Faltan ' + (labels.length - answered) + ' respuestas',
+ctaBg: answered === labels.length ? '#D4F64A' : '#26282D',
+ctaFg: answered === labels.length ? '#111214' : '#9A9DA5'
+};
+}
+}
+</script>
+
+
+</body></html>

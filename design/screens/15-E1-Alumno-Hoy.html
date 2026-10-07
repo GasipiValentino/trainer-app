@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<title>E1 — Alumno · Hoy</title>
+<script src="fd4711d0-b3a4-44d9-bcad-717c8260d5d5"></script>
+</head>
+<body>
+<x-dc>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #111214; color: #F2F2EE; font-family: 'Geist', 'Helvetica Neue', sans-serif; padding: 58px 16px 0; display: flex; flex-direction: column; gap: 12px">
+
+  <header style="display: flex; align-items: center; gap: 12px; padding: 0 4px 4px">
+    <div style="width: 46px; height: 46px; border-radius: 50%; background: #3A3C42; display: flex; align-items: center; justify-content: center; font-weight: 650; font-size: 15px">LF</div>
+    <div style="display: flex; flex-direction: column; gap: 2px; flex: 1">
+      <span style="font-size: 20px; font-weight: 650; letter-spacing: -0.01em">Hola, Lucas</span>
+      <span style="font-size: 13px; color: #9A9DA5">Martes 6 de octubre</span>
+    </div>
+    <div style="height: 36px; padding: 0 12px 0 4px; border-radius: 18px; background: #1C1D21; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600"><span style="width: 28px; height: 28px; border-radius: 50%; background: #D4F64A; color: #111214; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700">VG</span>Tu coach</div>
+  </header>
+
+  <!-- Entreno de hoy -->
+  <section style="background: #D4F64A; color: #111214; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 13px; font-weight: 600">Hoy · 07:00 · Presencial</span>
+        <span style="font-size: 32px; line-height: 1; font-weight: 700; letter-spacing: -0.03em">Tren inferior</span>
+      </div>
+      <span style="height: 28px; padding: 0 10px; border-radius: 14px; background: rgba(17,18,20,0.12); font-size: 12px; font-weight: 650; display: flex; align-items: center">Semana 3 de 4</span>
+    </div>
+    <div style="display: flex; gap: 18px; font-size: 14px; font-weight: 600">
+      <span>6 ejercicios</span><span>~55 min</span><span>RPE 7–8</span>
+    </div>
+    <a href="E2_Entrenando.dc.html" style="height: 52px; border-radius: 26px; background: #111214; color: #D4F64A; text-decoration: none; display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 20px; font-size: 16px; font-weight: 650">Empezar entrenamiento <span style="width: 38px; height: 38px; border-radius: 50%; background: #D4F64A; color: #111214; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"></path></svg></span></a>
+  </section>
+
+  <!-- Semana + progreso -->
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+    <div style="background: #1C1D21; border-radius: 24px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 13px; color: #9A9DA5">Esta semana</span>
+      <span style="font-size: 28px; font-weight: 700; letter-spacing: -0.03em">1<span style="font-size: 15px; color: #9A9DA5; font-weight: 500"> de 4</span></span>
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px">
+        <sc-for list="{{ week }}" as="d" hint-placeholder-count="7">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+            <span style="width: 16px; height: 16px; border-radius: 50%; background: {{ d.bg }}; border: {{ d.border }}; box-sizing: border-box"></span>
+            <span style="font-size: 10px; color: #9A9DA5; font-weight: 600">{{ d.l }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <a href="E3_MiProgreso.dc.html" style="background: #1C1D21; border-radius: 24px; padding: 16px; display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #F2F2EE">
+      <span style="font-size: 13px; color: #9A9DA5">Sentadilla</span>
+      <span style="font-size: 28px; font-weight: 700; letter-spacing: -0.03em">112<span style="font-size: 15px; color: #9A9DA5; font-weight: 500"> kg</span></span>
+      <svg width="130" height="34" sc-camel-view-box="0 0 130 34" style="display: block"><polyline points="0,30 18,30 36,26 54,26 72,18 90,18 108,10 130,4" fill="none" stroke="#D4F64A" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"></polyline></svg>
+      <span style="font-size: 12px; color: #D4F64A; font-weight: 600">+12% en 6 semanas</span>
+    </a>
+  </section>
+
+  <!-- Mensaje coach -->
+  <section style="background: #1C1D21; border-radius: 24px; padding: 16px; display: flex; gap: 12px">
+    <span style="width: 34px; height: 34px; border-radius: 50%; background: #D4F64A; color: #111214; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0">VG</span>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 13px; color: #9A9DA5">Valen · ayer</span>
+      <span style="font-size: 15px; line-height: 1.4">¡Tremendo el récord del jueves! Hoy cuidá la técnica en la bajada, no hace falta ir al fallo.</span>
+    </div>
+  </section>
+
+  <!-- Próximos -->
+  <section style="display: flex; flex-direction: column; gap: 8px">
+    <span style="font-size: 16px; font-weight: 650; padding: 4px 4px 0">Próximos entrenamientos</span>
+    <sc-for list="{{ next }}" as="n" hint-placeholder-count="2">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 20px; background: #1C1D21">
+        <div style="width: 48px; height: 48px; border-radius: 16px; background: #26282D; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 11px; color: #9A9DA5; font-weight: 600">{{ n.dow }}</span><span style="font-size: 17px; font-weight: 700">{{ n.d }}</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; flex: 1"><span style="font-size: 15px; font-weight: 650">{{ n.title }}</span><span style="font-size: 13px; color: #9A9DA5">{{ n.sub }}</span></div>
+      </div>
+    </sc-for>
+  </section>
+
+  <nav style="position: absolute; left: 16px; right: 16px; bottom: 24px; height: 68px; border-radius: 34px; background: #1C1D21; box-shadow: 0 -20px 40px rgba(17,18,20,0.9); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: center; padding: 0 6px">
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #D4F64A; font-size: 10px; font-weight: 600"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 11l8-6 8 6v9H4z"></path></svg>Hoy</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #9A9DA5; font-size: 10px; font-weight: 600"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5 6h14M5 12h14M5 18h9"></path></svg>Mi plan</a>
+    <a href="E3_MiProgreso.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #9A9DA5; font-size: 10px; font-weight: 600"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-6 4 3 7-9"></path></svg>Progreso</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #9A9DA5; font-size: 10px; font-weight: 600"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"></path></svg>Coach</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+renderVals() {
+const plan = [1, 1, 0, 1, 0, 1, 0], done = [1, 0, 0, 0, 0, 0, 0], today = 1;
+return {
+week: ['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((l, i) => ({
+l,
+bg: done[i] ? '#D4F64A' : 'transparent',
+border: done[i] ? 'none' : (plan[i] ? (i === today ? '2px solid #D4F64A' : '1.5px dashed #6A6D74') : '1.5px solid #2E3036')
+})),
+next: [
+{ dow: 'JUE', d: '8', title: 'Tren superior', sub: '07:00 · Presencial con Valen' },
+{ dow: 'SÁB', d: '10', title: 'Full body liviano', sub: 'Por tu cuenta · 40 min' }
+]
+};
+}
+}
+</script>
+
+
+</body></html>

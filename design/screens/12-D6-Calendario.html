@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<title>D6 — Calendario</title>
+<script src="7d7c3854-53db-4b72-aa56-d5d070af30f6"></script>
+</head>
+<body>
+<x-dc>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #111214; color: #F2F2EE; font-family: 'Geist', 'Helvetica Neue', sans-serif; padding: 58px 16px 0; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 0 4px">
+    <div style="display: flex; flex-direction: column">
+      <span style="font-size: 13px; color: #9A9DA5">Octubre 2026</span>
+      <h1 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.03em">Agenda</h1>
+    </div>
+    <div style="display: flex; gap: 2px; background: #1C1D21; border-radius: 22px; padding: 4px">
+      <sc-for list="{{ views }}" as="v" hint-placeholder-count="3">
+        <button sc-camel-on-click="{{ v.pick }}" style="height: 36px; padding: 0 12px; border-radius: 18px; border: none; background: {{ v.bg }}; color: {{ v.fg }}; font-family: inherit; font-size: 13px; font-weight: 650">{{ v.label }}</button>
+      </sc-for>
+    </div>
+  </header>
+
+  <sc-if value="{{ notMonth }}" hint-placeholder-val="{{ true }}">
+    <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px">
+      <sc-for list="{{ week }}" as="d" hint-placeholder-count="7">
+        <button sc-camel-on-click="{{ d.pick }}" style="height: 72px; border-radius: 22px; border: none; background: {{ d.bg }}; color: {{ d.fg }}; font-family: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px">
+          <span style="font-size: 12px; font-weight: 600; opacity: 0.75">{{ d.l }}</span>
+          <span style="font-size: 18px; font-weight: 700">{{ d.n }}</span>
+          <span style="font-size: 11px; font-weight: 600; opacity: 0.8">{{ d.c }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; gap: 12px; font-size: 12px; color: #9A9DA5; padding: 0 4px; flex-wrap: wrap">
+      <span style="display: flex; align-items: center; gap: 5px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #D4F64A"></span>Presencial</span>
+      <span style="display: flex; align-items: center; gap: 5px"><span style="width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid #F2F2EE; box-sizing: border-box"></span>Online</span>
+      <span style="display: flex; align-items: center; gap: 5px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #8EC5FF"></span>Evaluación</span>
+      <span style="display: flex; align-items: center; gap: 5px"><span style="width: 8px; height: 8px; border-radius: 2px; background: #6A6D74"></span>Tarea</span>
+    </div>
+
+    <section style="display: flex; flex-direction: column; gap: 8px">
+      <sc-for list="{{ events }}" as="e" hint-placeholder-count="5">
+        <div style="display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 10px; align-items: start">
+          <span style="font-size: 13px; font-weight: 600; color: #9A9DA5; padding-top: 16px; font-variant-numeric: tabular-nums">{{ e.t }}</span>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 20px; background: {{ e.bg }}; color: {{ e.fg }}">
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: {{ e.dot }}; border: {{ e.ring }}; box-sizing: border-box; flex-shrink: 0"></span>
+            <div style="display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0">
+              <span style="font-size: 15px; font-weight: 650">{{ e.title }}</span>
+              <span style="font-size: 13px; opacity: 0.7">{{ e.sub }}</span>
+            </div>
+            <span style="font-size: 12px; font-weight: 600; opacity: 0.7">{{ e.dur }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isMonth }}" hint-placeholder-val="{{ false }}">
+    <section style="background: #1C1D21; border-radius: 24px; padding: 14px 12px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); font-size: 12px; color: #9A9DA5; text-align: center; font-weight: 600"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px">
+        <sc-for list="{{ month }}" as="m" hint-placeholder-count="35">
+          <div style="height: 50px; border-radius: 14px; background: {{ m.bg }}; color: {{ m.fg }}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px">
+            <span style="font-size: 14px; font-weight: 600">{{ m.n }}</span>
+            <span style="display: flex; gap: 2px; height: 5px"><sc-for list="{{ m.dots }}" as="x" hint-placeholder-count="2"><span style="width: 5px; height: 5px; border-radius: 50%; background: {{ x.c }}"></span></sc-for></span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <div style="padding: 14px 16px; border-radius: 20px; background: #1C1D21; display: flex; justify-content: space-between; font-size: 14px"><span>Este mes</span><span style="color: #9A9DA5">62 sesiones · 6 evaluaciones</span></div>
+  </sc-if>
+
+  <nav style="position: absolute; left: 16px; right: 16px; bottom: 24px; height: 68px; border-radius: 34px; background: #1C1D21; box-shadow: 0 -20px 40px rgba(17,18,20,0.9); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center; padding: 0 6px">
+    <a href="D1_Inicio.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #9A9DA5; font-size: 10px; font-weight: 600"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 11l8-6 8 6v9H4z"></path></svg>Hoy</a>
+    <a href="D2_Alumnos.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #9A9DA5; font-size: 10px; font-weight: 600"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.3-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><path d="M16 4.6a3.5 3.5 0 010 6.8M18 14.8c2 .7 3.2 2.5 3.6 5.2"></path></svg>Alumnos</a>
+    <div style="display: flex; justify-content: center"><button aria-label="Nuevo evento" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: #D4F64A; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#111214" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button></div>
+    <a href="D5_Rutina.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #9A9DA5; font-size: 10px; font-weight: 600"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5 6h14M5 12h14M5 18h9"></path></svg>Rutinas</a>
+    <a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; color: #D4F64A; font-size: 10px; font-weight: 600"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3.5" y="5" width="17" height="15" rx="3"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>Agenda</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const view = st.v || 'Semana';
+const day = st.d == null ? 1 : st.d;
+const lime = '#D4F64A', blue = '#8EC5FF', grayT = '#6A6D74';
+const E = (t, title, sub, dur, kind) => {
+const k = { p: { dot: lime, ring: 'none' }, o: { dot: 'transparent', ring: '1.5px solid #F2F2EE' }, e: { dot: blue, ring: 'none' }, t: { dot: grayT, ring: 'none' } }[kind];
+return { t, title, sub, dur, dot: k.dot, ring: k.ring, bg: '#1C1D21', fg: '#F2F2EE' };
+};
+const byDay = [
+[E('07:00', 'Valentina Ríos', 'Presencial · Hipertrofia', '60′', 'p'), E('09:00', 'Joaquín Díaz', 'Presencial · Rehab rodilla', '45′', 'p'), E('18:00', 'Florencia Gil', 'Online · Seguimiento', '30′', 'o')],
+[E('07:00', 'Lucas Ferreyra', 'Presencial · Tren inferior', '60′', 'p'), E('08:30', 'Camila Torres', 'Evaluación y mediciones', '45′', 'e'), E('12:00', 'Pedro Alonso', 'Presencial · Full body', '60′', 'p'), E('16:00', 'Ajustar rutina de Sofía', 'Tarea', '', 't'), E('18:00', 'Sofía Méndez', 'Online · Revisión de plan', '30′', 'o')],
+[E('08:00', 'Tomás Acuña', 'Presencial · Fuerza', '60′', 'p'), E('19:30', 'Grupo running', 'Pasadas · Parque Centenario', '75′', 'p')],
+[E('07:00', 'Lucas Ferreyra', 'Presencial · Tren superior', '60′', 'p'), E('10:00', 'Martín Ruiz', 'Evaluación · retomar plan', '45′', 'e')],
+[E('09:00', 'Joaquín Díaz', 'Presencial · Rehab rodilla', '45′', 'p'), E('18:00', 'Lucía Pereyra', 'Online · Check-in', '30′', 'o')],
+[E('09:00', 'Grupo running', 'Fondo largo · Costanera', '90′', 'p')],
+[]
+];
+const labels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+const dots = { 1: 2, 2: 1, 5: 3, 6: 5, 7: 2, 8: 2, 9: 2, 12: 3, 13: 2, 14: 1, 15: 3, 16: 2, 19: 3, 20: 2, 21: 2, 22: 3, 23: 2, 26: 2, 27: 3, 28: 2, 29: 2, 30: 2 };
+const month = [];
+for (let i = 0; i < 3; i++) month.push({ n: '', bg: 'transparent', fg: '#F2F2EE', dots: [] });
+for (let n = 1; n <= 31; n++) {
+const c = Math.min(dots[n] || 0, 3);
+const today = n === 6;
+month.push({ n: String(n), bg: today ? lime : 'transparent', fg: today ? '#111214' : (n < 6 ? '#6A6D74' : '#F2F2EE'), dots: Array.from({ length: c }, (_, j) => ({ c: today ? '#111214' : (j === 2 ? blue : lime) })) });
+}
+month.push({ n: '', bg: 'transparent', fg: '#F2F2EE', dots: [] });
+return {
+views: ['Día', 'Semana', 'Mes'].map((v) => ({ label: v, bg: v === view ? '#D4F64A' : 'transparent', fg: v === view ? '#111214' : '#9A9DA5', pick: () => this.setState({ v }) })),
+notMonth: view !== 'Mes',
+isMonth: view === 'Mes',
+week: labels.map((l, i) => ({ l, n: String(5 + i), c: byDay[i].length ? byDay[i].length + ' ses' : '—', bg: i === day ? '#D4F64A' : '#1C1D21', fg: i === day ? '#111214' : '#F2F2EE', pick: () => this.setState({ d: i }) })),
+events: byDay[day],
+month
+};
+}
+}
+</script>
+
+
+</body></html>

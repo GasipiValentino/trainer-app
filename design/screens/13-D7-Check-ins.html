@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<title>D7 — Check-ins</title>
+<script src="2418325e-4363-4aa0-8636-3079872d223d"></script>
+</head>
+<body>
+<x-dc>
+
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #111214; color: #F2F2EE; font-family: 'Geist', 'Helvetica Neue', sans-serif; padding: 58px 16px 0; display: flex; flex-direction: column; gap: 12px">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 0 4px">
+    <div style="display: flex; flex-direction: column">
+      <span style="font-size: 13px; color: #9A9DA5">Semana del 28 sep</span>
+      <h1 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.03em">Check-ins</h1>
+    </div>
+    <a href="#" style="height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #3A3C42; color: #F2F2EE; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center">Editar preguntas</a>
+  </header>
+
+  <!-- Respuestas -->
+  <section style="background: #1C1D21; border-radius: 24px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <span style="font-size: 32px; font-weight: 700; letter-spacing: -0.03em">18<span style="font-size: 16px; color: #9A9DA5; font-weight: 500"> de 24 respondieron</span></span>
+    </div>
+    <div style="height: 8px; border-radius: 4px; background: #2E3036; overflow: hidden"><div style="width: 75%; height: 100%; background: #D4F64A; border-radius: 4px"></div></div>
+    <button style="height: 44px; border-radius: 22px; border: none; background: #26282D; color: #F2F2EE; font-family: inherit; font-size: 14px; font-weight: 600">Recordar a los 6 que faltan</button>
+  </section>
+
+  <!-- Alerta -->
+  <section style="background: #1C1D21; border-radius: 24px; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; border: 1.5px solid rgba(255,143,107,0.55)">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <div style="width: 42px; height: 42px; border-radius: 50%; background: #3A3C42; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600">LP</div>
+      <div style="display: flex; flex-direction: column; flex: 1">
+        <span style="font-size: 16px; font-weight: 650">Lucía Pereyra</span>
+        <span style="font-size: 13px; color: #FF8F6B">3 respuestas fuera de lo habitual</span>
+      </div>
+      <span style="font-size: 12px; color: #9A9DA5">dom 20:14</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px">
+      <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="6">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; justify-content: space-between; font-size: 13px"><span style="color: #9A9DA5">{{ m.label }}</span><span style="font-weight: 650; color: {{ m.color }}">{{ m.val }}</span></div>
+          <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px; height: 6px">
+            <sc-for list="{{ m.segs }}" as="s" hint-placeholder-count="5"><div style="border-radius: 3px; background: {{ s.bg }}"></div></sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding: 12px 14px; border-radius: 16px; background: #26282D; font-size: 14px; line-height: 1.45">“Semana muy pesada en el trabajo, dormí poco y no llegué a entrenar el jueves ni el viernes.”</div>
+    <div style="display: flex; gap: 8px">
+      <a href="#" style="flex: 1; height: 46px; border-radius: 23px; background: #D4F64A; color: #111214; text-decoration: none; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">Responder</a>
+      <a href="#" style="flex: 1; height: 46px; border-radius: 23px; border: 1px solid #3A3C42; color: #F2F2EE; text-decoration: none; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center">Bajar la carga</a>
+    </div>
+  </section>
+
+  <!-- Resto -->
+  <section style="background: #1C1D21; border-radius: 24px; padding: 6px 8px 8px; display: flex; flex-direction: column">
+    <span style="font-size: 16px; font-weight: 650; padding: 12px 12px 6px">Sin novedades · 17</span>
+    <sc-for list="{{ rest }}" as="r" hint-placeholder-count="3">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 18px; background: #26282D; margin-top: 6px">
+        <div style="width: 36px; height: 36px; border-radius: 50%; background: #3A3C42; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{ r.ini }}</div>
+        <span style="font-size: 15px; font-weight: 600; flex: 1">{{ r.name }}</span>
+        <span style="font-size: 13px; color: #9A9DA5">{{ r.sum }}</span>
+      </div>
+    </sc-for>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+renderVals() {
+const coral = '#FF8F6B', lime = '#D4F64A';
+const m = (label, v, max, bad) => ({ label, val: v + '/' + max, color: bad ? coral : '#F2F2EE', segs: Array.from({ length: 5 }, (_, i) => ({ bg: i < Math.round(v / max * 5) ? (bad ? coral : lime) : '#2E3036' })) });
+return {
+metrics: [m('Energía', 2, 5, true), m('Sueño', 2, 5, true), m('Estrés', 4, 5, true), m('Dolor', 1, 5, false), m('Motivación', 3, 5, false), m('Entrenos', 2, 4, false)],
+rest: [
+{ ini: 'LF', name: 'Lucas Ferreyra', sum: 'Energía 5 · Sueño 4' },
+{ ini: 'VR', name: 'Valentina Ríos', sum: 'Energía 4 · Sueño 4' },
+{ ini: 'PA', name: 'Pedro Alonso', sum: 'Energía 4 · Sueño 3' }
+]
+};
+}
+}
+</script>
+
+
+</body></html>

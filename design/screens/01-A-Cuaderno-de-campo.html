@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<title>A — Cuaderno de campo · Inicio</title>
+<script src="e4d9c1bc-5d67-4e5b-b0e3-527f5c088c92"></script>
+</head>
+<body>
+<x-dc>
+
+<div style="width: 1440px; height: 1024px; box-sizing: border-box; background: #F3EFE6; color: #1E1F22; font-family: 'Instrument Sans', 'Helvetica Neue', sans-serif; display: flex; flex-direction: column">
+
+  <!-- Barra superior -->
+  <header style="height: 64px; padding: 0 56px; display: flex; align-items: center; gap: 40px; border-bottom: 1px solid #D8D1C2">
+    <div style="font-family: 'Newsreader', Georgia, serif; font-size: 24px; font-weight: 600; letter-spacing: -0.01em">Bitácora</div>
+    <nav style="display: flex; gap: 26px; font-size: 15px">
+      <a href="#" style="color: #1E1F22; text-decoration: none; font-weight: 600">Inicio</a>
+      <a href="#" style="color: #4A4A46; text-decoration: none">Alumnos</a>
+      <a href="#" style="color: #4A4A46; text-decoration: none">Rutinas</a>
+      <a href="#" style="color: #4A4A46; text-decoration: none">Calendario</a>
+      <a href="#" style="color: #4A4A46; text-decoration: none">Progreso</a>
+      <a href="#" style="color: #4A4A46; text-decoration: none">Mensajes · 3</a>
+    </nav>
+    <div style="flex: 1"></div>
+    <button style="height: 38px; width: 280px; border: 1px solid #CFC7B6; background: #FBF9F4; border-radius: 4px; font-family: inherit; font-size: 14px; color: #5B5850; text-align: left; padding: 0 12px; display: flex; justify-content: space-between; align-items: center">Buscar alumno <span style="font-size: 12px">⌘K</span></button>
+    <div style="width: 36px; height: 36px; border-radius: 50%; background: #22406E; color: #F3EFE6; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600">VG</div>
+  </header>
+
+  <main style="flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 72px; padding: 52px 56px 40px">
+
+    <!-- Columna principal -->
+    <section style="display: flex; flex-direction: column; gap: 36px; min-width: 0">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 14px; color: #5B5850; letter-spacing: 0.02em">Martes 6 de octubre</div>
+        <h1 style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-weight: 400; font-size: 52px; line-height: 1.08; letter-spacing: -0.02em; max-width: 760px; text-wrap: pretty">Hoy, <em style="font-style: italic">tres alumnos</em> necesitan que los mires. El resto avanza.</h1>
+        <div style="font-size: 16px; color: #4A4A46; line-height: 1.5; max-width: 680px">24 alumnos activos · 31 de 38 entrenamientos registrados esta semana · 5 sesiones presenciales hoy.</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1.5px solid #1E1F22">
+          <h2 style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-size: 26px; font-weight: 500">Atención hoy</h2>
+          <span style="font-size: 14px; color: #5B5850">3 por revisar · 2 buenas noticias</span>
+        </div>
+
+        <sc-for list="{{ items }}" as="it" hint-placeholder-count="5">
+          <article style="display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 20px; align-items: start; padding: 20px 0; border-bottom: 1px solid #D8D1C2">
+            <div style="font-family: 'Newsreader', Georgia, serif; font-size: 15px; color: {{ it.markColor }}; padding-top: 4px">{{ it.mark }}</div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <div style="font-family: 'Newsreader', Georgia, serif; font-size: 22px; line-height: 1.3"><strong style="font-weight: 600">{{ it.name }}</strong> {{ it.text }}</div>
+              <div style="font-size: 14px; color: #5B5850; line-height: 1.45">{{ it.context }}</div>
+            </div>
+            <div style="display: flex; gap: 8px; padding-top: 2px">
+              <button style="height: 36px; padding: 0 14px; border: 1px solid #1E1F22; background: transparent; border-radius: 4px; font-family: inherit; font-size: 14px; color: #1E1F22">{{ it.action }}</button>
+              <button style="height: 36px; padding: 0 14px; border: 1px solid transparent; background: transparent; font-family: inherit; font-size: 14px; color: #22406E; text-decoration: underline; text-underline-offset: 3px">Ver ficha</button>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Columna lateral -->
+    <aside style="display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <h2 style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-size: 22px; font-weight: 500; padding-bottom: 10px; border-bottom: 1.5px solid #1E1F22">Agenda de hoy</h2>
+        <sc-for list="{{ agenda }}" as="a" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 14px; font-size: 15px">
+            <div style="font-variant-numeric: tabular-nums; color: #5B5850">{{ a.time }}</div>
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <div style="font-weight: 500">{{ a.who }}</div>
+              <div style="font-size: 13px; color: #5B5850">{{ a.what }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-size: 22px; font-weight: 500; padding-bottom: 10px; border-bottom: 1.5px solid #1E1F22">Pendientes</h2>
+        <label style="display: flex; gap: 12px; align-items: center; font-size: 15px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #22406E"> Actualizar rutina de Sofía (bloque 3)</label>
+        <label style="display: flex; gap: 12px; align-items: center; font-size: 15px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #22406E"> Medir a Camila — 30 días sin datos</label>
+        <label style="display: flex; gap: 12px; align-items: center; font-size: 15px"><input type="checkbox" checked="" style="width: 18px; height: 18px; accent-color: #22406E"> <span style="color: #8A867C; text-decoration: line-through">Responder check-in de Pedro</span></label>
+      </div>
+    </aside>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024}}">
+class Component extends DCLogic {
+renderVals() {
+const warn = '#9A5A08', ok = '#2C6A4C';
+return {
+items: [
+{ mark: 'i.', markColor: warn, name: 'Martín Ruiz', text: 'lleva 8 días sin registrar entrenamiento.', context: 'Venía entrenando 4 veces por semana. Último registro: lunes 28 de septiembre.', action: 'Escribirle' },
+{ mark: 'ii.', markColor: warn, name: 'Sofía Méndez', text: 'no tuvo cambios de peso en 5 semanas.', context: 'Objetivo: bajar de grasa. Cumplimiento 92% — el problema no parece ser la constancia.', action: 'Revisar plan' },
+{ mark: 'iii.', markColor: warn, name: 'Lucía Pereyra', text: 'bajó de 4 a 2 entrenamientos semanales.', context: 'Tendencia de las últimas 3 semanas. Último check-in: estrés 4/5, sueño 2/5.', action: 'Pedir check-in' },
+{ mark: '+', markColor: ok, name: 'Lucas Ferreyra', text: 'aumentó su sentadilla un 12%.', context: '100 kg → 112 kg en 6 semanas. Nuevo récord personal el jueves.', action: 'Felicitarlo' },
+{ mark: '+', markColor: ok, name: 'Pedro Alonso', text: 'completó su primer mes sin faltar.', context: '16 de 16 sesiones planificadas.', action: 'Felicitarlo' }
+],
+agenda: [
+{ time: '07:00', who: 'Lucas Ferreyra', what: 'Presencial · Tren inferior' },
+{ time: '08:30', who: 'Camila Torres', what: 'Evaluación y mediciones' },
+{ time: '12:00', who: 'Pedro Alonso', what: 'Presencial · Full body' },
+{ time: '18:00', who: 'Sofía Méndez', what: 'Online · Revisión de plan' },
+{ time: '19:30', who: 'Grupo running', what: 'Pasadas · Parque Centenario' }
+]
+};
+}
+}
+</script>
+
+
+</body></html>
