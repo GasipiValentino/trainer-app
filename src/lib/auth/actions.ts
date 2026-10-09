@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { env } from "@/lib/env";
+import { getSiteUrl } from "@/lib/site-url";
 import { friendlyError, logError } from "@/lib/errors";
 import { homeFor, getSessionUser } from "@/lib/auth/session";
 import {
@@ -64,7 +64,7 @@ export async function registerAction(_prev: ActionState, formData: FormData): Pr
     password,
     options: {
       data: { first_name: firstName, last_name: lastName },
-      emailRedirectTo: `${env.siteUrl}/auth/confirm?next=/teacher`,
+      emailRedirectTo: `${await getSiteUrl()}/auth/confirm?next=/teacher`,
     },
   });
   if (error) {
@@ -107,7 +107,7 @@ export async function inviteRegisterAction(_prev: ActionState, formData: FormDat
     password: parsed.data.password,
     options: {
       data: { invitation_token: parsed.data.token },
-      emailRedirectTo: `${env.siteUrl}/auth/confirm?next=/student`,
+      emailRedirectTo: `${await getSiteUrl()}/auth/confirm?next=/student`,
     },
   });
   if (error) {
@@ -134,7 +134,7 @@ export async function forgotPasswordAction(_prev: ActionState, formData: FormDat
 
   const supabase = await createClient();
   const { error } = await supabase.auth.resetPasswordForEmail(parsed.data.email, {
-    redirectTo: `${env.siteUrl}/auth/confirm?next=/reset-password`,
+    redirectTo: `${await getSiteUrl()}/auth/confirm?next=/reset-password`,
   });
   if (error) {
     logError("auth.forgot", error);

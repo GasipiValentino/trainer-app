@@ -1,9 +1,10 @@
 import "server-only";
+import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { logError } from "@/lib/errors";
 
-/** Mensajes sin leer del usuario autenticado (RLS limita a los propios). */
-export async function getUnreadCount(userId: string): Promise<number> {
+/** Mensajes sin leer del usuario autenticado (RLS limita a los propios). Memoizado por request. */
+export const getUnreadCount = cache(async (userId: string): Promise<number> => {
   const supabase = await createClient();
   const { count, error } = await supabase
     .from("messages")
@@ -15,7 +16,7 @@ export async function getUnreadCount(userId: string): Promise<number> {
     return 0;
   }
   return count ?? 0;
-}
+});
 
 export type Thread = {
   otherId: string;

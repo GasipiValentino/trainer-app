@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { requireRole } from "@/lib/auth/session";
-import { env } from "@/lib/env";
+import { getSiteUrl } from "@/lib/site-url";
 import { friendlyError, logError } from "@/lib/errors";
 import { routes } from "@/lib/navigation";
 import { isUuid } from "@/lib/data/students";
@@ -18,7 +18,7 @@ import { measurementSchema, noteSchema, studentSchema } from "@/lib/validation/s
  *  3. delega la verificación de ownership a RLS / RPCs.
  */
 
-const inviteUrl = (token: string) => `${env.siteUrl}/invite/${token}`;
+const inviteUrl = async (token: string) => `${await getSiteUrl()}/invite/${token}`;
 const FORBIDDEN: ActionState = { ok: false, message: "No tenés permiso para hacer esto." };
 
 // ------------------------------------------------------------- alta
@@ -57,7 +57,7 @@ export async function createStudentAction(_prev: ActionState, formData: FormData
     // El alumno quedó creado: puede generar la invitación desde su perfil.
     return { ok: true, data: { studentId, inviteUrl: "" }, message: "Alumno creado, pero no pudimos generar la invitación." };
   }
-  return { ok: true, data: { studentId, inviteUrl: inviteUrl(token), email: d.email, firstName: d.firstName } };
+  return { ok: true, data: { studentId, inviteUrl: await inviteUrl(token), email: d.email, firstName: d.firstName } };
 }
 
 // ----------------------------------------------------------- edición
@@ -114,7 +114,7 @@ export async function regenerateInviteAction(studentId: string): Promise<ActionS
     logError("students.invite", error);
     return { ok: false, message: friendlyError(error) };
   }
-  return { ok: true, data: { inviteUrl: inviteUrl(token) } };
+  return { ok: true, data: { inviteUrl: await inviteUrl(token) } };
 }
 
 // -------------------------------------------------------- desvincular

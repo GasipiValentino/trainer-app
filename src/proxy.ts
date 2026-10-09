@@ -31,9 +31,10 @@ export async function proxy(request: NextRequest) {
     },
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // getClaims valida el JWT localmente (claves asimétricas) y solo va a la red
+  // cuando hay que refrescar la sesión: evita un viaje a Supabase por request.
+  const { data } = await supabase.auth.getClaims();
+  const user = data?.claims ?? null;
 
   const path = request.nextUrl.pathname;
 

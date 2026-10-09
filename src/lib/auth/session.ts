@@ -18,20 +18,19 @@ export type SessionUser = {
  */
 export const getSessionUser = cache(async (): Promise<SessionUser | null> => {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return null;
+  const { data } = await supabase.auth.getClaims();
+  const userId = data?.claims?.sub;
+  if (!userId) return null;
 
   const { data: profile } = await supabase
     .from("profiles")
     .select("role, first_name, last_name, email")
-    .eq("id", user.id)
+    .eq("id", userId)
     .single();
   if (!profile) return null;
 
   return {
-    id: user.id,
+    id: userId,
     email: profile.email,
     role: profile.role as Role,
     firstName: profile.first_name,
